@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "author": "Max Harlynking",
+    "location": "Santa Barbara, United States",
+    "description": "Palm trees at sunset in Santa Barbara, California",
+    "unsplash": "@harlynkingm"
+  },
+  {
+    "id": 1,
+    "author": "Marek Piwnicki",
+    "location": "Milford Sound, Southland, New Zealand",
+    "description": "Cruise",
+    "unsplash": "@marekpiwnicki"
+  }
+]

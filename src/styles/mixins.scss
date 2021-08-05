@@ -1,0 +1,9 @@
+$white: #f2f2f2;
+
+@mixin widget {
+  color: $white;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border-radius: 1rem;
+  border: 1px solid $white;
+}
