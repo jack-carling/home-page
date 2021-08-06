@@ -1,6 +1,13 @@
 @import '../styles/mixins.scss';
 
 section.bookmarks {
-  grid-row: 2 / 4;
+  grid-area: bookmarks;
   @include widget;
+}
+
+section.wrapper {
+  padding-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
 }

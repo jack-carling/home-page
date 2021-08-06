@@ -1,7 +1,7 @@
 @import '../styles/mixins.scss';
 
 section.weather {
-  grid-row: 2 / 3;
+  grid-area: weather;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -23,4 +23,10 @@ span.temperature {
 }
 span.location {
   font-size: 1.5rem;
+}
+
+@media screen and (max-width: 800px) {
+  section.weather {
+    width: 100%;
+  }
 }

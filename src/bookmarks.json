@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Youtube",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=youtube.com",
+    "url": "https://www.youtube.com/"
+  },
+  {
+    "name": "Facebook",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=facebook.com",
+    "url": "https://www.facebook.com/"
+  },
+  {
+    "name": "Twitter",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=twitter.com",
+    "url": "https://twitter.com/"
+  },
+  {
+    "name": "Wikipedia",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=wikipedia.org",
+    "url": "https://www.wikipedia.org/"
+  },
+  {
+    "name": "Instagram",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=instagram.com",
+    "url": "https://www.instagram.com/"
+  },
+  {
+    "name": "Yahoo",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=yahoo.com",
+    "url": "https://yahoo.com/"
+  },
+  {
+    "name": "WhatsApp",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=whatsapp.com",
+    "url": "https://whatsapp.com/"
+  },
+  {
+    "name": "Amazon",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=amazon.com",
+    "url": "https://amazon.com/"
+  },
+  {
+    "name": "Live",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=live.com",
+    "url": "https://live.com/"
+  },
+  {
+    "name": "Netflix",
+    "thumbnail": "https://www.google.com/s2/favicons?sz=48&domain_url=netflix.com",
+    "url": "https://netflix.com/"
+  }
+]

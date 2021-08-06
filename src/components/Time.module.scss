@@ -1,9 +1,12 @@
 @import '../styles/mixins.scss';
 
 section.time {
+  grid-area: time;
   width: 300px;
+  height: 175px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   @include widget;
 }
@@ -11,4 +14,10 @@ section.time {
 h1.time {
   margin: 0;
   font-size: 5rem;
+}
+
+@media screen and (max-width: 800px) {
+  section.time {
+    width: 100%;
+  }
 }

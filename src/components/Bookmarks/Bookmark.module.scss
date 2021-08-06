@@ -1,0 +1,22 @@
+div.bookmark {
+  cursor: pointer;
+  border: 1px solid #f2f2f2;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  img {
+    max-width: 30px;
+  }
+  span {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+}
