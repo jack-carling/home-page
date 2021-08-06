@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -8,6 +12,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+input {
+  font-family: 'Roboto', sans-serif;
+}
+
 main.App {
+  width: 100vw;
+  height: 100vh;
   padding: 3rem;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: 3rem;
 }

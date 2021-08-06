@@ -1,0 +1,26 @@
+@import '../styles/mixins.scss';
+
+section.weather {
+  grid-row: 2 / 3;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  @include widget;
+  position: relative;
+  opacity: 0;
+  transition: opacity 2s ease;
+  img {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    max-width: 75px;
+  }
+}
+
+span.temperature {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+span.location {
+  font-size: 1.5rem;
+}

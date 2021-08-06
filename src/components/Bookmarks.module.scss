@@ -1,0 +1,6 @@
+@import '../styles/mixins.scss';
+
+section.bookmarks {
+  grid-row: 2 / 4;
+  @include widget;
+}
