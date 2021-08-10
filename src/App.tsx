@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ContextMenu from './components/Bookmarks/ContextMenu';
 import Time from './components/Time';
 import Weather from './components/Weather';
 import Bookmarks from './components/Bookmarks';
 import Background from './components/Background';
+import Overlay from './components/Overlay';
 
 import defaultBookmarks from './bookmarks.json';
 
+interface BookmarkObj {
+  name: string;
+  thumbnail: string;
+  url: string;
+}
+
 function App() {
-  const [bookmarks, setBookmarks] = useState(() => defaultBookmarks);
+  let bookmarksStorage = localStorage.bookmarks;
+  if (!bookmarksStorage) {
+    bookmarksStorage = defaultBookmarks;
+  } else {
+    bookmarksStorage = JSON.parse(localStorage.bookmarks);
+  }
+
+  const [bookmarks, setBookmarks] = useState(() => bookmarksStorage);
   const [contextMenu, setContextMenu] = useState({ show: false, x: 0, y: 0, name: '', index: 0 });
+  const [overlay, setOverlay] = useState({ show: false, action: '' });
+  const [edit, setEdit] = useState({ index: 0, name: '', thumbnail: '', url: '' });
+
+  useEffect(() => {
+    localStorage.bookmarks = JSON.stringify(bookmarks);
+  }, [bookmarks]);
 
   function handleContextMenu(e: React.MouseEvent, name: string, key: number) {
     e.preventDefault();
@@ -21,6 +41,19 @@ function App() {
     const modified = [...bookmarks];
     modified.splice(contextMenu.index, 1);
     setBookmarks(modified);
+  }
+
+  function handleEdit() {
+    const index = contextMenu.index;
+    const name = bookmarks[index].name;
+    const thumbnail = bookmarks[index].thumbnail;
+    const url = bookmarks[index].url;
+    setEdit({ index, name, thumbnail, url });
+    setOverlay({ action: 'edit', show: true });
+  }
+
+  function handleOverlay(e: React.MouseEvent, action: string) {
+    setOverlay({ action, show: true });
   }
 
   return (
@@ -36,13 +69,33 @@ function App() {
               setContextMenu({ ...contextMenu, show: false });
             }}
             deleteBookmark={handleDelete}
+            editBookmark={handleEdit}
           />
         )}
         <Time />
         <Weather />
-        <Bookmarks bookmarks={bookmarks} handleRightClick={handleContextMenu} />
+        <Bookmarks handleMenu={handleOverlay} bookmarks={bookmarks} handleRightClick={handleContextMenu} />
       </main>
       <Background id={0} />
+      <Overlay
+        handleAddBookmark={(name, thumbnail, url) => {
+          setBookmarks((bookmarks: BookmarkObj[]) => [...bookmarks, { name, thumbnail, url }]);
+          setOverlay({ ...overlay, show: false });
+        }}
+        handleEditBookmark={(index, name, thumbnail, url) => {
+          setBookmarks((bookmarks: BookmarkObj[]) => {
+            const all = [...bookmarks];
+            all[index].name = name;
+            all[index].thumbnail = thumbnail;
+            all[index].url = url;
+            return all;
+          });
+          setOverlay({ ...overlay, show: false });
+        }}
+        closeOverlay={() => setOverlay({ ...overlay, show: false })}
+        edit={edit}
+        {...overlay}
+      />
     </>
   );
 }

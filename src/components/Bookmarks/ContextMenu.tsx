@@ -8,14 +8,15 @@ interface Props {
   name: string;
   closeContextMenu: (e: React.MouseEvent) => void;
   deleteBookmark: (e: React.MouseEvent) => void;
+  editBookmark: (e: React.MouseEvent) => void;
 }
 
-function ContextMenu({ x, y, name, closeContextMenu, deleteBookmark }: Props) {
+function ContextMenu({ x, y, name, closeContextMenu, deleteBookmark, editBookmark }: Props) {
   return (
     <main onClick={closeContextMenu} onContextMenu={closeContextMenu} className={css.contextMenu}>
       <section style={{ left: x, top: y }}>
         <ul>
-          <li>Edit {name}</li>
+          <li onClick={editBookmark}>Edit {name}</li>
           <li onClick={deleteBookmark}>Delete {name}</li>
         </ul>
       </section>
