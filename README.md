@@ -12,3 +12,17 @@ A customizable home page that shows the current time and date, weather based on 
 - Responsive design
 
 [Inspiration](https://homey-app.online/)
+
+## Screenshot
+
+<img width="1400" src="https://user-images.githubusercontent.com/72305598/129457706-34318894-d5f8-4c84-b67a-d246ecd9799e.png">
+
+## Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
