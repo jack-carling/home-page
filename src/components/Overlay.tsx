@@ -36,6 +36,7 @@ function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBook
     if (!show) {
       setFavicon({ url: '', letter: '' });
       setInput({ name: '', url: '' });
+      setError('');
     } else {
       if (action === 'edit') {
         if (edit) {
