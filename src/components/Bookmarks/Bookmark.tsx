@@ -20,6 +20,10 @@ function handleClick(url: string) {
 function Bookmark({ bookmark, handleRightClick }: Props) {
   const div = useRef<HTMLDivElement>(null);
 
+  function getFirstLetter() {
+    return bookmark.name.charAt(0).toUpperCase();
+  }
+
   return (
     <div
       ref={div}
@@ -27,7 +31,8 @@ function Bookmark({ bookmark, handleRightClick }: Props) {
       onContextMenu={(e) => handleRightClick(e, bookmark.name)}
       className={css.bookmark}
     >
-      <img src={bookmark.thumbnail} alt="" />
+      {bookmark.thumbnail && <img src={bookmark.thumbnail} alt="" />}
+      {!bookmark.thumbnail && <div className={css.thumbnail}>{getFirstLetter()}</div>}
       <span>{bookmark.name}</span>
     </div>
   );

@@ -45,6 +45,7 @@ main.App {
 @media screen and (max-width: 600px) {
   main.App {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-areas:
       'time'
       'weather'

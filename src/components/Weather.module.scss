@@ -9,6 +9,7 @@ section.weather {
   position: relative;
   opacity: 0;
   transition: opacity 2s ease;
+  text-shadow: 1px 1px 1px #333;
   img {
     position: absolute;
     top: 1rem;
