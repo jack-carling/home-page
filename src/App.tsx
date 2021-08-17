@@ -23,14 +23,26 @@ function App() {
     bookmarksStorage = JSON.parse(localStorage.bookmarks);
   }
 
+  let backgroundStorage = localStorage.background;
+  if (!backgroundStorage) {
+    backgroundStorage = 0;
+  } else {
+    backgroundStorage = JSON.parse(localStorage.background);
+  }
+
   const [bookmarks, setBookmarks] = useState(() => bookmarksStorage);
   const [contextMenu, setContextMenu] = useState({ show: false, x: 0, y: 0, name: '', index: 0 });
   const [overlay, setOverlay] = useState({ show: false, action: '' });
   const [edit, setEdit] = useState({ index: 0, name: '', thumbnail: '', url: '' });
+  const [background, setBackground] = useState(() => backgroundStorage);
 
   useEffect(() => {
     localStorage.bookmarks = JSON.stringify(bookmarks);
   }, [bookmarks]);
+
+  useEffect(() => {
+    localStorage.background = JSON.stringify(background);
+  }, [background]);
 
   function handleContextMenu(e: React.MouseEvent, name: string, key: number) {
     e.preventDefault();
@@ -76,7 +88,7 @@ function App() {
         <Weather />
         <Bookmarks handleMenu={handleOverlay} bookmarks={bookmarks} handleRightClick={handleContextMenu} />
       </main>
-      <Background id={0} />
+      <Background id={background} />
       <Overlay
         handleAddBookmark={(name, thumbnail, url) => {
           setBookmarks((bookmarks: BookmarkObj[]) => [...bookmarks, { name, thumbnail, url }]);
@@ -95,6 +107,7 @@ function App() {
         closeOverlay={() => setOverlay({ ...overlay, show: false })}
         edit={edit}
         {...overlay}
+        handleBackground={(id) => setBackground(id)}
       />
     </>
   );

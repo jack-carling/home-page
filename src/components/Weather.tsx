@@ -4,7 +4,7 @@ import css from './Weather.module.scss';
 
 const API_KEY = '8c0a9368d0e58ec72c711ab169b8b109';
 
-interface Weather {
+interface WeatherObj {
   location: string | null;
   temperature: number | null;
   min: number | null;
@@ -14,7 +14,7 @@ interface Weather {
 }
 
 function Weather() {
-  const [weather, updateWeather] = useState<Weather>({
+  const [weather, updateWeather] = useState<WeatherObj>({
     location: null,
     temperature: null,
     min: null,

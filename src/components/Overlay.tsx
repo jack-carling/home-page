@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import backgrounds from '../backgrounds/backgrounds.json';
 import css from './Overlay.module.scss';
 
 interface Edit {
@@ -15,13 +16,15 @@ interface Props {
   closeOverlay: (e: React.MouseEvent) => void;
   handleAddBookmark: (name: string, thumbnail: string, url: string) => void;
   handleEditBookmark: (index: number, name: string, thumbnail: string, url: string) => void;
+  handleBackground: (id: number) => void;
   edit?: Edit;
 }
 
-function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBookmark, edit }: Props) {
+function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBookmark, handleBackground, edit }: Props) {
   const [favicon, setFavicon] = useState({ url: '', letter: '' });
   const [input, setInput] = useState({ name: '', url: '' });
   const [error, setError] = useState('');
+  const [thumbnails, setThumbnails] = useState(true);
 
   useEffect(() => {
     if (!input.name) {
@@ -153,7 +156,21 @@ function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBook
                 </section>
               </>
             )}
-            {action === 'settings' && <h1>Settings</h1>}
+            {action === 'settings' && (
+              <section className={css.settings}>
+                <h1>Settings</h1>
+                <span>Pick a new background image</span>
+                <section className={css.backgrounds}>
+                  {backgrounds.map((background, index) => {
+                    return (
+                      <div key={index} onClick={() => handleBackground(index)}>
+                        <img src={`/src/backgrounds/background_${background.id}.jpg`} />
+                      </div>
+                    );
+                  })}
+                </section>
+              </section>
+            )}
           </section>
         </main>
       )}
