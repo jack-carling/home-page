@@ -15,16 +15,29 @@ interface Props {
   action: string;
   closeOverlay: (e: React.MouseEvent) => void;
   handleAddBookmark: (name: string, thumbnail: string, url: string) => void;
-  handleEditBookmark: (index: number, name: string, thumbnail: string, url: string) => void;
+  handleEditBookmark: (
+    index: number,
+    name: string,
+    thumbnail: string,
+    url: string
+  ) => void;
   handleBackground: (id: number) => void;
   edit?: Edit;
 }
 
-function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBookmark, handleBackground, edit }: Props) {
+function Overlay({
+  show,
+  action,
+  closeOverlay,
+  handleAddBookmark,
+  handleEditBookmark,
+  handleBackground,
+  edit,
+}: Props) {
   const [favicon, setFavicon] = useState({ url: '', letter: '' });
   const [input, setInput] = useState({ name: '', url: '' });
   const [error, setError] = useState('');
-  const [thumbnails, setThumbnails] = useState(true);
+  const [thumbnails, setThumbnails] = useState({ show: false, id: 0 });
 
   useEffect(() => {
     if (!input.name) {
@@ -106,7 +119,13 @@ function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBook
       {show && (
         <main className={css.overlay}>
           <section className={css.wrapper}>
-            <i className={`material-icons ${css.close}`} onClick={closeOverlay}>
+            <i
+              className={`material-icons ${css.close}`}
+              onClick={(e) => {
+                closeOverlay(e);
+                setThumbnails({ ...thumbnails, show: false });
+              }}
+            >
               close
             </i>
             {(action === 'add' || action === 'edit') && (
@@ -161,13 +180,77 @@ function Overlay({ show, action, closeOverlay, handleAddBookmark, handleEditBook
                 <h1>Settings</h1>
                 <span>Pick a new background image</span>
                 <section className={css.backgrounds}>
-                  {backgrounds.map((background, index) => {
-                    return (
-                      <div key={index} onClick={() => handleBackground(index)}>
-                        <img src={`/src/backgrounds/background_${background.id}.jpg`} />
-                      </div>
-                    );
-                  })}
+                  {!thumbnails.show &&
+                    backgrounds.map((background, index) => {
+                      return (
+                        // <div key={index} onClick={() => handleBackground(index)}>
+                        <div
+                          key={index}
+                          onClick={() =>
+                            setThumbnails({ show: true, id: background.id })
+                          }
+                        >
+                          <img
+                            src={`/src/backgrounds/background_${background.id}.jpg`}
+                          />
+                        </div>
+                      );
+                    })}
+                  {thumbnails.show && (
+                    <div className={css.setBackgroundImage}>
+                      <img
+                        src={`/src/backgrounds/background_${thumbnails.id}.jpg`}
+                        alt=""
+                      />
+                      <article>
+                        <span>
+                          <i className="material-icons">description</i>
+                          {backgrounds[thumbnails.id].description &&
+                            backgrounds[thumbnails.id].description}
+                          {!backgrounds[thumbnails.id].description &&
+                            'No description'}
+                        </span>
+                        <span>
+                          <i className="material-icons">account_circle</i>
+                          {backgrounds[thumbnails.id].author}
+                        </span>
+
+                        <span>
+                          <i className="material-icons">location_on</i>
+                          {backgrounds[thumbnails.id].location &&
+                            backgrounds[thumbnails.id].location}
+                          {!backgrounds[thumbnails.id].location && 'Unknown'}
+                        </span>
+                        <span>
+                          <i className="material-icons">badge</i>
+                          <a
+                            href={`https://unsplash.com/${
+                              backgrounds[thumbnails.id].unsplash
+                            }`}
+                          >
+                            {backgrounds[thumbnails.id].unsplash}
+                          </a>
+                        </span>
+                        <button
+                          onClick={() =>
+                            setThumbnails({
+                              ...thumbnails,
+                              show: false,
+                            })
+                          }
+                        >
+                          Back
+                        </button>
+                        <button
+                          onClick={() => {
+                            handleBackground(thumbnails.id);
+                          }}
+                        >
+                          Use as background
+                        </button>
+                      </article>
+                    </div>
+                  )}
                 </section>
               </section>
             )}
