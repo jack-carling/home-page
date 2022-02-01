@@ -1,9 +1,5 @@
 # Home Page
 
-Work in progress
-
-## About
-
 A customizable home page that shows the current time and date, weather based on your location and all of your favorite bookmarks.
 
 - Weather location, icon, description, temperature and highs and lows if user allows location services
@@ -26,3 +22,7 @@ npm install
 # Run development server
 npm run dev
 ```
+
+## Limitations
+
+The `backdrop-filter` property isn't currently supported in Firefox or Firefox for Android.
